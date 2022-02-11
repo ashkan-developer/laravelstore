@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\Content\CategoryController as ContentCategoryController;
+use App\Http\Controllers\Admin\Content\PostController;
 use App\Http\Controllers\MenuController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,17 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
             Route::put('/update/{postCategory}',[ContentCategoryController::class,'update'])->name('admin.content.category.update');
             Route::delete('/destroy/{postCategory}',[ContentCategoryController::class,'destroy'])->name('admin.content.category.destroy');
             Route::get('/status/{postCategory}', [ContentCategoryController::class, 'status'])->name('admin.content.category.status');
+        });
+        // post //
+        Route::prefix('post')->group(function (){
+            Route::get('/',[PostController::class,'index'])->name('admin.content.post.index');
+            Route::get('/create',[PostController::class,'create'])->name('admin.content.post.create');
+            Route::post('/store',[PostController::class,'store'])->name('admin.content.post.store');
+            Route::get('/edit/{post}', [PostController::class, 'edit'])->name('admin.content.post.edit');
+            Route::put('/update/{post}', [PostController::class, 'update'])->name('admin.content.post.update');
+            Route::delete('/destroy/{post}', [PostController::class, 'destroy'])->name('admin.content.post.destroy');
+            Route::get('/status/{post}', [PostController::class, 'status'])->name('admin.content.post.status');
+            Route::get('/commentable/{post}', [PostController::class, 'commentable'])->name('admin.content.post.commentable');
         });
     });
 
