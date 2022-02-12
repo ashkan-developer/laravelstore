@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\Content\CommentController as ContentCommentController;
 use App\Http\Controllers\Admin\Content\CategoryController as ContentCategoryController;
 use App\Http\Controllers\Admin\Content\PageController;
+use App\Http\Controllers\Admin\User\AdminUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,5 +93,19 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
             Route::delete('/destroy/{page}', [PageController::class, 'destroy'])->name('admin.content.page.destroy');
             Route::get('/status/{page}', [PageController::class, 'status'])->name('admin.content.page.status');
         }); 
+    });
+    // user //
+    Route::prefix('user')->namespace('User')->group(function (){
+        //admin-user
+        Route::prefix('admin-user')->group(function () {
+            Route::get('/', [AdminUserController::class, 'index'])->name('admin.user.admin-user.index');
+            Route::get('/create', [AdminUserController::class, 'create'])->name('admin.user.admin-user.create');
+            Route::post('/store', [AdminUserController::class, 'store'])->name('admin.user.admin-user.store');
+            Route::get('/edit/{admin}', [AdminUserController::class, 'edit'])->name('admin.user.admin-user.edit');
+            Route::put('/update/{admin}', [AdminUserController::class, 'update'])->name('admin.user.admin-user.update');
+            Route::delete('/destroy/{admin}', [AdminUserController::class, 'destroy'])->name('admin.user.admin-user.destroy');
+            Route::get('/status/{user}', [AdminUserController::class, 'status'])->name('admin.user.admin-user.status');
+            Route::get('/activation/{user}', [AdminUserController::class, 'activation'])->name('admin.user.admin-user.activation');
+        });
     });
 });
