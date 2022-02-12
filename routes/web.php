@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\Content\PostController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\Content\CommentController as ContentCommentController;
 use App\Http\Controllers\Admin\Content\CategoryController as ContentCategoryController;
+use App\Http\Controllers\Admin\Content\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,5 +82,15 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
             Route::delete('/destroy/{faq}', [FAQController::class, 'destroy'])->name('admin.content.faq.destroy');
             Route::get('/status/{faq}', [FAQController::class, 'status'])->name('admin.content.faq.status');
         });
+        //page
+        Route::prefix('page')->group(function () {
+            Route::get('/', [PageController::class, 'index'])->name('admin.content.page.index');
+            Route::get('/create', [PageController::class, 'create'])->name('admin.content.page.create');
+            Route::post('/store', [PageController::class, 'store'])->name('admin.content.page.store');
+            Route::get('/edit/{page}', [PageController::class, 'edit'])->name('admin.content.page.edit');
+            Route::put('/update/{page}', [PageController::class, 'update'])->name('admin.content.page.update');
+            Route::delete('/destroy/{page}', [PageController::class, 'destroy'])->name('admin.content.page.destroy');
+            Route::get('/status/{page}', [PageController::class, 'status'])->name('admin.content.page.status');
+        }); 
     });
 });
