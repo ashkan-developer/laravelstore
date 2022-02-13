@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\User\RoleController;
 use App\Http\Controllers\Admin\Content\FAQController;
 use App\Http\Controllers\Admin\Content\MenuController;
 use App\Http\Controllers\Admin\Content\PageController;
@@ -118,6 +119,17 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
             Route::delete('/destroy/{user}', [CustomerController::class, 'destroy'])->name('admin.user.customer.destroy');
             Route::get('/status/{user}', [CustomerController::class, 'status'])->name('admin.user.customer.status');
             Route::get('/activation/{user}', [CustomerController::class, 'activation'])->name('admin.user.customer.activation');
+        });
+        //role
+        Route::prefix('role')->group(function () {
+            Route::get('/', [RoleController::class, 'index'])->name('admin.user.role.index');
+            Route::get('/create', [RoleController::class, 'create'])->name('admin.user.role.create');
+            Route::post('/store', [RoleController::class, 'store'])->name('admin.user.role.store');
+            Route::get('/edit/{role}', [RoleController::class, 'edit'])->name('admin.user.role.edit');
+            Route::put('/update/{role}', [RoleController::class, 'update'])->name('admin.user.role.update');
+            Route::delete('/destroy/{role}', [RoleController::class, 'destroy'])->name('admin.user.role.destroy');
+            Route::get('/permission-form/{role}', [RoleController::class, 'permissionForm'])->name('admin.user.role.permission-form');
+            Route::put('/permission-update/{role}', [RoleController::class, 'permissionUpdate'])->name('admin.user.role.permission-update');
         });
     });
 });
