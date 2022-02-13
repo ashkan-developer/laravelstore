@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Content\PostController;
 use App\Http\Controllers\Admin\User\CustomerController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\User\AdminUserController;
+use App\Http\Controllers\Admin\Ticket\TicketAdminController;
 use App\Http\Controllers\Admin\Ticket\TicketCategoryController;
 use App\Http\Controllers\Admin\Ticket\TicketPriorityController;
 use App\Http\Controllers\Admin\Content\CommentController as ContentCommentController;
@@ -155,6 +156,11 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
             Route::put('/update/{ticketPriority}', [TicketPriorityController::class, 'update'])->name('admin.ticket.priority.update');
             Route::delete('/destroy/{ticketPriority}', [TicketPriorityController::class, 'destroy'])->name('admin.ticket.priority.destroy');
             Route::get('/status/{ticketPriority}', [TicketPriorityController::class, 'status'])->name('admin.ticket.priority.status');
+        });
+        //admin
+        Route::prefix('admin')->group(function () {
+            Route::get('/', [TicketAdminController::class, 'index'])->name('admin.ticket.admin.index');
+            Route::get('/set/{admin}', [TicketAdminController::class, 'set'])->name('admin.ticket.admin.set');
         });
     });
 });
