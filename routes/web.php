@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\User\AdminUserController;
 use App\Http\Controllers\Admin\Content\CommentController as ContentCommentController;
 use App\Http\Controllers\Admin\Content\CategoryController as ContentCategoryController;
+use App\Http\Controllers\Admin\Ticket\TicketCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -130,6 +131,19 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
             Route::delete('/destroy/{role}', [RoleController::class, 'destroy'])->name('admin.user.role.destroy');
             Route::get('/permission-form/{role}', [RoleController::class, 'permissionForm'])->name('admin.user.role.permission-form');
             Route::put('/permission-update/{role}', [RoleController::class, 'permissionUpdate'])->name('admin.user.role.permission-update');
+        });
+    });
+    // ticket
+    Route::prefix('ticket')->namespace('Ticket')->group(function (){
+        // category
+        Route::prefix('category')->group(function () {
+            Route::get('/', [TicketCategoryController::class, 'index'])->name('admin.ticket.category.index');
+            Route::get('/create', [TicketCategoryController::class, 'create'])->name('admin.ticket.category.create');
+            Route::post('/store', [TicketCategoryController::class, 'store'])->name('admin.ticket.category.store');
+            Route::get('/edit/{ticketCategory}', [TicketCategoryController::class, 'edit'])->name('admin.ticket.category.edit');
+            Route::put('/update/{ticketCategory}', [TicketCategoryController::class, 'update'])->name('admin.ticket.category.update');
+            Route::delete('/destroy/{ticketCategory}', [TicketCategoryController::class, 'destroy'])->name('admin.ticket.category.destroy');
+            Route::get('/status/{ticketCategory}', [TicketCategoryController::class, 'status'])->name('admin.ticket.category.status');
         });
     });
 });
