@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Content\FAQController;
 use App\Http\Controllers\Admin\Content\MenuController;
 use App\Http\Controllers\Admin\Content\PageController;
 use App\Http\Controllers\Admin\Content\PostController;
+use App\Http\Controllers\Admin\Ticket\TicketController;
 use App\Http\Controllers\Admin\User\CustomerController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\User\AdminUserController;
@@ -162,5 +163,13 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
             Route::get('/', [TicketAdminController::class, 'index'])->name('admin.ticket.admin.index');
             Route::get('/set/{admin}', [TicketAdminController::class, 'set'])->name('admin.ticket.admin.set');
         });
+        //main
+        Route::get('/', [TicketController::class, 'index'])->name('admin.ticket.index');
+        Route::get('/new-tickets', [TicketController::class, 'newTickets'])->name('admin.ticket.newTickets');
+        Route::get('/open-tickets', [TicketController::class, 'openTickets'])->name('admin.ticket.openTickets');
+        Route::get('/close-tickets', [TicketController::class, 'closeTickets'])->name('admin.ticket.closeTickets');
+        Route::get('/show/{ticket}', [TicketController::class, 'show'])->name('admin.ticket.show');
+        Route::post('/answer/{ticket}', [TicketController::class, 'answer'])->name('admin.ticket.answer');
+        Route::get('/change/{ticket}', [TicketController::class, 'change'])->name('admin.ticket.change');
     });
 });
