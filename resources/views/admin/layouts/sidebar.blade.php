@@ -151,9 +151,8 @@
             </a>
 
 
-
             <section class="sidebar-part-title">اطلاع رسانی</section>
-            <a href="" class="sidebar-link">
+            <a href="{{ route('admin.notify.email.index') }}" class="sidebar-link">
                 <i class="fas fa-bars"></i>
                 <span>اعلامیه ایمیلی</span>
             </a>

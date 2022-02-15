@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed3714ebb92d2269889e309aa0179fbc",
+    "content-hash": "293bd6a0ac560ff8d068c79d4bb2c246",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5784,6 +5784,58 @@
                 }
             ],
             "time": "2022-01-17T16:30:37+00:00"
+        },
+        {
+            "name": "tartan/laravel-jalali-date",
+            "version": "v6.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/iamtartan/laravel-jalali-date.git",
+                "reference": "811d7019af03a23364de79dc18bf416d15f82c07"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/iamtartan/laravel-jalali-date/zipball/811d7019af03a23364de79dc18bf416d15f82c07",
+                "reference": "811d7019af03a23364de79dc18bf416d15f82c07",
+                "shasum": ""
+            },
+            "require": {
+                "ext-intl": "*",
+                "illuminate/support": ">=5.0.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tartan\\Zaman\\": "src/Zaman"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aboozar Ghaffari",
+                    "email": "aboozar.ghf@gmail.com"
+                }
+            ],
+            "description": "Laravel 5+ Jalali datetime component known as ZAMAN",
+            "keywords": [
+                "Jalali",
+                "datetime",
+                "gregorian",
+                "hijri",
+                "jdatetime",
+                "laravel",
+                "moment",
+                "shamsi"
+            ],
+            "support": {
+                "issues": "https://github.com/iamtartan/laravel-jalali-date/issues",
+                "source": "https://github.com/iamtartan/laravel-jalali-date/tree/master"
+            },
+            "time": "2019-09-06T09:41:47+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
