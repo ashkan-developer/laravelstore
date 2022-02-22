@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\Ticket\TicketCategoryController;
 use App\Http\Controllers\Admin\Ticket\TicketPriorityController;
 use App\Http\Controllers\Admin\Content\CommentController as ContentCommentController;
 use App\Http\Controllers\Admin\Content\CategoryController as ContentCategoryController;
+use App\Http\Controllers\Admin\Market\CategoryController;
 use App\Http\Controllers\Admin\Market\DeliveryController;
 
 /*
@@ -226,6 +227,15 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
             Route::put('/update/{delivery}', [DeliveryController::class, 'update'])->name('admin.market.delivery.update');
             Route::delete('/destroy/{delivery}', [DeliveryController::class, 'destroy'])->name('admin.market.delivery.destroy');
             Route::get('/status/{delivery}', [DeliveryController::class, 'status'])->name('admin.market.delivery.status');
+        });
+        //category
+        Route::prefix('category')->group(function () {
+            Route::get('/', [CategoryController::class, 'index'])->name('admin.market.category.index');
+            Route::get('/create', [CategoryController::class, 'create'])->name('admin.market.category.create');
+            Route::post('/store', [CategoryController::class, 'store'])->name('admin.market.category.store');
+            Route::get('/edit/{productCategory}', [CategoryController::class, 'edit'])->name('admin.market.category.edit');
+            Route::put('/update/{productCategory}', [CategoryController::class, 'update'])->name('admin.market.category.update');
+            Route::delete('/destroy/{productCategory}', [CategoryController::class, 'destroy'])->name('admin.market.category.destroy');
         });
     });
 
