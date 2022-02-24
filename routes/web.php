@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\Ticket\TicketCategoryController;
 use App\Http\Controllers\Admin\Ticket\TicketPriorityController;
 use App\Http\Controllers\Admin\Content\CommentController as ContentCommentController;
 use App\Http\Controllers\Admin\Content\CategoryController as ContentCategoryController;
+use App\Http\Controllers\Admin\Market\BrandController;
 use App\Http\Controllers\Admin\Market\CategoryController;
 use App\Http\Controllers\Admin\Market\DeliveryController;
 
@@ -217,6 +218,7 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
         Route::put('/update/{setting}', [SettingController::class, 'update'])->name('admin.setting.update');
         Route::delete('/destroy/{setting}', [SettingController::class, 'destroy'])->name('admin.setting.destroy');
     });
+    // market
     Route::prefix('market')->namespace('Market')->group(function (){
         //delivery
         Route::prefix('delivery')->group(function () {
@@ -236,6 +238,15 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
             Route::get('/edit/{productCategory}', [CategoryController::class, 'edit'])->name('admin.market.category.edit');
             Route::put('/update/{productCategory}', [CategoryController::class, 'update'])->name('admin.market.category.update');
             Route::delete('/destroy/{productCategory}', [CategoryController::class, 'destroy'])->name('admin.market.category.destroy');
+        });
+        // brand 
+        Route::prefix('brand')->group(function(){
+            Route::get('/',[BrandController::class,'index'])->name('admin.market.brand.index');
+            Route::get('/create',[BrandController::class,'create'])->name('admin.market.brand.create');
+            Route::post('/store',[BrandController::class,'store'])->name('admin.market.brand.store');
+            Route::get('/edit/{brand}',[BrandController::class,'edit'])->name('admin.market.brand.edit');
+            Route::put('/update/{brand}',[BrandController::class,'update'])->name('admin.market.brand.update');
+            Route::delete('/destroy/{brand}',[BrandController::class,'destroy'])->name('admin.market.brand.destroy');
         });
     });
 
