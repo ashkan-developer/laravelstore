@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\Ticket\TicketCategoryController;
 use App\Http\Controllers\Admin\Ticket\TicketPriorityController;
 use App\Http\Controllers\Admin\Content\CommentController as ContentCommentController;
 use App\Http\Controllers\Admin\Content\CategoryController as ContentCategoryController;
+use App\Http\Controllers\Admin\Market\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -275,6 +276,16 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
             Route::post('/color/store/{product}', [ProductColorController::class, 'store'])->name('admin.market.color.store');
             Route::delete('/color/destroy/{product}/{color}', [ProductColorController::class, 'destroy'])->name('admin.market.color.destroy');
         });
+        Route::prefix('comment')->group(function (){
+            Route::get('/',[CommentController::class,'index'])->name('admin.market.comment.index');
+            Route::get('/show/{comment}',[CommentController::class,'show'])->name('admin.market.comment.show');
+            Route::post('/store',[CommentController::class,'store'])->name('admin.market.comment.store');
+            Route::get('/edit/{id}',[CommentController::class,'edit'])->name('admin.market.comment.edit');
+            Route::put('/update/{id}', [CommentController::class, 'update'])->name('admin.market.comment.update');
+            Route::delete('/destroy/{id}', [CommentController::class, 'destroy'])->name('admin.market.comment.destroy');
+            Route::get('/approved/{comment}', [CommentController::class, 'approved'])->name('admin.market.comment.approved');
+            Route::get('/status/{comment}', [CommentController::class, 'status'])->name('admin.market.comment.status');
+            Route::post('/answer/{comment}', [CommentController::class, 'answer'])->name('admin.market.comment.answer');        });
     });
 
 });
