@@ -1,5 +1,6 @@
 <?php
 
+use PhpParser\Builder\Property;
 use Illuminate\Support\Facades\Route;
 use App\Models\Market\ProductCategory;
 use App\Http\Controllers\Admin\User\RoleController;
@@ -13,20 +14,22 @@ use App\Http\Controllers\Admin\Notify\EmailController;
 use App\Http\Controllers\Admin\Ticket\TicketController;
 use App\Http\Controllers\Admin\User\CustomerController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\Market\CommentController;
 use App\Http\Controllers\Admin\Market\GalleryController;
 use App\Http\Controllers\Admin\Market\ProductController;
 use App\Http\Controllers\Admin\User\AdminUserController;
 use App\Http\Controllers\Admin\Market\CategoryController;
 use App\Http\Controllers\Admin\Market\DeliveryController;
+use App\Http\Controllers\Admin\Market\PropertyController;
 use App\Http\Controllers\admin\setting\SettingController;
 use App\Http\Controllers\Admin\Notify\EmailFileController;
 use App\Http\Controllers\Admin\Ticket\TicketAdminController;
 use App\Http\Controllers\Admin\Market\ProductColorController;
+use App\Http\Controllers\Admin\Market\PropertyValueController;
 use App\Http\Controllers\Admin\Ticket\TicketCategoryController;
 use App\Http\Controllers\Admin\Ticket\TicketPriorityController;
 use App\Http\Controllers\Admin\Content\CommentController as ContentCommentController;
 use App\Http\Controllers\Admin\Content\CategoryController as ContentCategoryController;
-use App\Http\Controllers\Admin\Market\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -286,6 +289,21 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
             Route::get('/approved/{comment}', [CommentController::class, 'approved'])->name('admin.market.comment.approved');
             Route::get('/status/{comment}', [CommentController::class, 'status'])->name('admin.market.comment.status');
             Route::post('/answer/{comment}', [CommentController::class, 'answer'])->name('admin.market.comment.answer');        });
-    });
+        });
+        Route::prefix('property')->group(function (){
+            Route::get('/',[PropertyController::class,'index'])->name('admin.market.property.index');
+            Route::get('/create',[PropertyController::class,'create'])->name('admin.market.property.create');
+            Route::post('/store',[PropertyController::class,'store'])->name('admin.market.property.store');
+            Route::get('/edit/{categoryAttribute}', [PropertyController::class, 'edit'])->name('admin.market.property.edit');
+            Route::put('/update/{categoryAttribute}', [PropertyController::class, 'update'])->name('admin.market.property.update');
+            Route::delete('/destroy/{categoryAttribute}', [PropertyController::class, 'destroy'])->name('admin.market.property.destroy');
+            //value
+            Route::get('/value/{categoryAttribute}', [PropertyValueController::class, 'index'])->name('admin.market.value.index');
+            Route::get('/value/create/{categoryAttribute}', [PropertyValueController::class, 'create'])->name('admin.market.value.create');
+            Route::post('/value/store/{categoryAttribute}', [PropertyValueController::class, 'store'])->name('admin.market.value.store');
+            Route::get('/value/edit/{categoryAttribute}/{value}', [PropertyValueController::class, 'edit'])->name('admin.market.value.edit');
+            Route::put('/value/update/{categoryAttribute}/{value}', [PropertyValueController::class, 'update'])->name('admin.market.value.update');
+            Route::delete('/value/destroy/{categoryAttribute}/{value}', [PropertyValueController::class, 'destroy'])->name('admin.market.value.destroy');
+        });
 
 });
