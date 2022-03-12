@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Content\MenuController;
 use App\Http\Controllers\Admin\Content\PageController;
 use App\Http\Controllers\Admin\Content\PostController;
 use App\Http\Controllers\Admin\Market\BrandController;
+use App\Http\Controllers\Admin\Market\StoreController;
 use App\Http\Controllers\Admin\Notify\EmailController;
 use App\Http\Controllers\Admin\Ticket\TicketController;
 use App\Http\Controllers\Admin\User\CustomerController;
@@ -305,5 +306,12 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
             Route::put('/value/update/{categoryAttribute}/{value}', [PropertyValueController::class, 'update'])->name('admin.market.value.update');
             Route::delete('/value/destroy/{categoryAttribute}/{value}', [PropertyValueController::class, 'destroy'])->name('admin.market.value.destroy');
         });
-
+        //store
+        Route::prefix('store')->group(function () {
+            Route::get('/', [StoreController::class, 'index'])->name('admin.market.store.index');
+            Route::get('/add-to-store/{product}', [StoreController::class, 'addToStore'])->name('admin.market.store.add-to-store');
+            Route::post('/store/{product}', [StoreController::class, 'store'])->name('admin.market.store.store');
+            Route::get('/edit/{product}', [StoreController::class, 'edit'])->name('admin.market.store.edit');
+            Route::put('/update/{product}', [StoreController::class, 'update'])->name('admin.market.store.update');
+        });
 });
