@@ -31,6 +31,7 @@ use App\Http\Controllers\Admin\Ticket\TicketCategoryController;
 use App\Http\Controllers\Admin\Ticket\TicketPriorityController;
 use App\Http\Controllers\Admin\Content\CommentController as ContentCommentController;
 use App\Http\Controllers\Admin\Content\CategoryController as ContentCategoryController;
+use App\Http\Controllers\Admin\Market\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -313,5 +314,15 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
             Route::post('/store/{product}', [StoreController::class, 'store'])->name('admin.market.store.store');
             Route::get('/edit/{product}', [StoreController::class, 'edit'])->name('admin.market.store.edit');
             Route::put('/update/{product}', [StoreController::class, 'update'])->name('admin.market.store.update');
+        });
+        //payment
+        Route::prefix('payment')->group(function (){
+            Route::get('/',[PaymentController::class,'index'])->name('admin.market.payment.index');
+            Route::get('/online',[PaymentController::class,'online'])->name('admin.market.payment.online');
+            Route::get('/offline',[PaymentController::class,'offline'])->name('admin.market.payment.offline');
+            Route::get('/cash',[PaymentController::class,'cash'])->name('admin.market.payment.cash');
+            Route::get('/canceled/{payment}', [PaymentController::class, 'canceled'])->name('admin.market.payment.canceled');
+            Route::get('/returned/{payment}', [PaymentController::class, 'returned'])->name('admin.market.payment.returned');
+            Route::get('/show/{payment}', [PaymentController::class, 'show'])->name('admin.market.payment.show');
         });
 });
