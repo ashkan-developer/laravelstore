@@ -265,6 +265,7 @@
 
 
                         <section class="col-12 border-top border-bottom py-3 mb-3">
+                        <label for="">ویژگی کالا</label>
 
                             <section class="row meta-product">
 
